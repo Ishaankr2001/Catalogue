@@ -8,6 +8,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   String name = "";
+  bool changebutton = false;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -55,22 +56,34 @@ class _LoginState extends State<Login> {
                   ),
                   SizedBox(height: 40),
                   InkWell(
-                    onTap: () {
+                    onTap: () async {
+                      setState(() {
+                        changebutton = true;
+                      });
+                      await Future.delayed(Duration(seconds: 1));
                       Navigator.pushNamed(context, MyRoutes.homeRoute);
                     },
                     child: AnimatedContainer(
-                      duration: Duration(seconds: 2),
-                      height: 40,
-                      width: 80,
+                      duration: Duration(seconds: 1),
+                      height: 55,
+                      width: changebutton ? 55 : 80,
                       alignment: Alignment.center,
-                      child: Text("LOGIN",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          )),
+                      child: changebutton
+                          ? Icon(
+                              Icons.done,
+                              color: Colors.white,
+                            )
+                          : Text("LOGIN",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18,
+                              )),
                       decoration: BoxDecoration(
-                          color: Colors.deepPurple,
-                          borderRadius: BorderRadius.circular(8)),
+                        color: Colors.deepPurple,
+                        borderRadius:
+                            BorderRadius.circular(changebutton ? 55 : 8),
+                      ),
                     ),
                   ),
                 ],
