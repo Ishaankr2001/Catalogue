@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:catalogue/utils/catalog.dart';
 import 'package:catalogue/widgets/drawer.dart';
 import 'package:catalogue/widgets/item_widget.dart';
@@ -12,7 +11,6 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  int age = 20;
   @override
   void initState() {
     // TODO: implement initState
@@ -21,10 +19,14 @@ class _HomepageState extends State<Homepage> {
   }
 
   loadData() async {
+    await Future.delayed(Duration(seconds: 2));
     var cataloguejson =
         await rootBundle.loadString("assets/files/catalogue.json");
     var decode = jsonDecode(cataloguejson);
-    print(decode);
+    var productdata = decode["products"];
+    CatalogueModel.items =
+        List.from(productdata).map<Item>((item) => Item.fromMap(item)).toList();
+    setState(() {});
   }
 
   @override
@@ -33,14 +35,18 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(
         title: Text("Catalogue"),
       ),
-      body: ListView.builder(
-        itemCount: CatalogueModel.items.length,
-        itemBuilder: (context, index) {
-          return ItemWidget(
-            item: CatalogueModel.items[index],
-          );
-        },
-      ),
+      body: (CatalogueModel.items != null)
+          ? ListView.builder(
+              itemCount: CatalogueModel.items!.length,
+              itemBuilder: (context, index) {
+                return ItemWidget(
+                  item: CatalogueModel.items![index],
+                );
+              },
+            )
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
       drawer: MyDrawer(),
     );
   }
