@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:catalogue/screens/login.dart';
 import 'package:catalogue/screens/home.dart';
 import 'package:catalogue/utils/routes.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
       debugShowCheckedModeBanner: false,
-      initialRoute: MyRoutes.homeRoute,
+      initialRoute: "/",
       routes: {
         "/": (context) => Login(),
         MyRoutes.homeRoute: (context) => Homepage(),
