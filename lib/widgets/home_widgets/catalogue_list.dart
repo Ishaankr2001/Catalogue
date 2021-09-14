@@ -56,12 +56,12 @@ class CatalogueItem extends StatelessWidget {
                       onPressed: () {},
                       style: ButtonStyle(
                           shape: MaterialStateProperty.all(StadiumBorder())),
-                      child: "BUY".text.make())
+                      child: "Add to Cart".text.make())
                 ],
               )
             ]))
       ],
-    )).rounded.square(200).make().py12();
+    )).rounded.square(250).make().py2();
   }
 }
 

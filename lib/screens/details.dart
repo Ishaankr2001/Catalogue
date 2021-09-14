@@ -22,8 +22,8 @@ class ProductDetails extends StatelessWidget {
                   onPressed: () {},
                   style: ButtonStyle(
                       shape: MaterialStateProperty.all(StadiumBorder())),
-                  child: "BUY".text.xl.bold.make())
-              .wh(100, 50)
+                  child: "Add to Cart".text.xl.bold.make())
+              .wh(130, 50)
         ],
       ).p16(),
       backgroundColor: Colors.white,
