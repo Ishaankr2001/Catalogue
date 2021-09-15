@@ -39,13 +39,15 @@ class CatalogueItem extends StatelessWidget {
         Hero(
           tag: Key(catalogue.id.toString()),
           child: CatalogueImage(image: catalogue.image),
-        ),
+        ).px12(),
         Expanded(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-              catalogue.name.text.xl2.bold.color(MyTheme.primarytheme).make(),
+              catalogue.name.text.xl2.bold
+                  .color(context.theme.accentColor)
+                  .make(),
               catalogue.desc.text.make(),
               ButtonBar(
                 alignment: MainAxisAlignment.spaceBetween,
@@ -55,13 +57,15 @@ class CatalogueItem extends StatelessWidget {
                   ElevatedButton(
                       onPressed: () {},
                       style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              (context.theme.buttonColor)),
                           shape: MaterialStateProperty.all(StadiumBorder())),
-                      child: "Add to Cart".text.make())
+                      child: "Add to Cart".text.white.make())
                 ],
               )
             ]))
       ],
-    )).rounded.square(250).make().py2();
+    )).rounded.square(200).color(context.theme.cardColor).make().py12();
   }
 }
 
@@ -72,6 +76,12 @@ class CatalogueImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(image).box.py12.white.rounded.make().wHalf(context);
+    return Image.network(image)
+        .box
+        .py20
+        .color(Colors.white)
+        .rounded
+        .make()
+        .wh(180, 170);
   }
 }

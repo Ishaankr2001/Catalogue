@@ -8,8 +8,8 @@ class CatalogueHeader extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          "Catalogue".text.xl5.bold.color(MyTheme.primarytheme).make(),
-          "Trending Products".text.xl.color(MyTheme.primarytheme).make(),
+          "Catalogue".text.xl5.bold.color(context.theme.accentColor).make(),
+          "Trending Products".text.xl.color(context.theme.accentColor).make(),
         ],
       ),
     );
